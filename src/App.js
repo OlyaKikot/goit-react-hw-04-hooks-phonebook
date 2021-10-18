@@ -18,10 +18,11 @@ function App() {
     setFilter(e.currentTarget.value);
   };
 
-  const visibleContacts = () =>
-    contacts.filter((contact) =>
+  const visibleContacts = () => {
+    return contacts.filter((contact) =>
       contact.name.toLowerCase().includes(filter.trim().toLowerCase())
     );
+  };
   const onFormSubmit = (name, number) => {
     if (contacts.some((contact) => contact.name === name)) {
       alert(name + " is already in contacts");
@@ -39,7 +40,7 @@ function App() {
   useEffect(() => {
     const parsedContacts = JSON.parse(localStorage.getItem("contacts"));
 
-    setContacts(parsedContacts);
+    setContacts(parsedContacts ?? []);
   }, []);
 
   useEffect(() => {
